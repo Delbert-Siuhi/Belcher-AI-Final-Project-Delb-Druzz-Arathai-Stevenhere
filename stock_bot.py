@@ -1,3 +1,5 @@
+# Authors: Arath Bernal, Andreas Eglhofer, Delbert Siuhi, Steven Adams
+
 # Imports
 import yfinance as yf
 import pandas as pd
