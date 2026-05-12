@@ -1,4 +1,3 @@
-# Authors: Arath Bernal, Andreas Eglhofer, Delbert Siuhi, Steven Adams
 # Imports
 import yfinance as yf
 import pandas as pd
@@ -6,6 +5,9 @@ import numpy as np
 import logging
 import alpaca_trade_api as tradeapi
 from datetime import datetime
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 # Alpaca API keys
 API_KEY = 'your_api_key_here'
@@ -64,11 +66,67 @@ def calculate_indicators(data):
     data['RSI'] = 100 - (100 / (1 + rs))
 
     return data
+    
+# Machine learning prediction
+def add_ml_predictions(data):
+
+    # Future price movement
+    data['Future_Close'] = data['Close'].shift(-1)
+
+    # 1 = price goes up tomorrow
+    # 0 = price goes down tomorrow
+    data['Target'] = (
+        data['Future_Close'] > data['Close']
+    ).astype(int)
+
+    # Features used for AI
+    features = data[['EMA_12', 'EMA_26', 'RSI']]
+
+    # Remove empty rows
+    features = features.dropna()
+
+    # Match targets
+    target = data.loc[features.index, 'Target']
+
+    # Split training/testing data
+    X_train, X_test, y_train, y_test = train_test_split(
+        features,
+        target,
+        test_size=0.2,
+        shuffle=False
+    )
+
+    # Create AI model
+    model = RandomForestClassifier(
+        n_estimators=100,
+        random_state=42
+    )
+
+    # Train model
+    model.fit(X_train, y_train)
+
+    # Predict market direction
+    predictions = model.predict(features)
+
+    # Save predictions
+    data.loc[features.index, 'ML_Prediction'] = predictions
+
+    # Test accuracy
+    test_predictions = model.predict(X_test)
+
+    accuracy = accuracy_score(
+        y_test,
+        test_predictions
+    )
+
+    print(f"ML Accuracy: {accuracy:.2f}")
+
+    return data
 
 
 # Add indicators
 data = calculate_indicators(data)
-
+data = add_ml_predictions(data)
 
 # Create buy/sell signals
 def generate_signals(data):
@@ -79,7 +137,8 @@ def generate_signals(data):
     # Buy condition
     buy_signal = (
         (data['EMA_12'] > data['EMA_26']) &
-        (data['RSI'] < 30)
+        (data['RSI'] < 30) &
+        (data['ML_Prediction'] == 1)
     )
 
     # Sell condition
