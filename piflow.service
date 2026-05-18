@@ -1,0 +1,15 @@
+[Unit]
+Description=PiFlow local AI camera monitor
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/pi/piflow_final
+ExecStart=/home/pi/piflow_final/run_camera.sh
+Restart=on-failure
+RestartSec=5
+User=pi
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

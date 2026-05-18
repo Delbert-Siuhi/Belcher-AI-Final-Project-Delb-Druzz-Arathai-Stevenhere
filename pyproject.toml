@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "piflow"
+version = "1.0.0"
+description = "Local Raspberry Pi 5 AI HAT+ object detection monitor"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Andreas Zhou"}]
+dependencies = []
+
+[project.scripts]
+piflow = "piflow.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

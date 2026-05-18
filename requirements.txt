@@ -1,0 +1,3 @@
+# PiFlow uses Python standard library only.
+# Raspberry Pi OS packages needed on the Pi:
+#   sudo apt install -y rpicam-apps hailo-all espeak-ng python3-venv

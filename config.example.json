@@ -1,0 +1,17 @@
+{
+  "min_confidence": 0.55,
+  "cooldown_seconds": 4.0,
+  "watch_labels": [
+    "backpack",
+    "book",
+    "bottle",
+    "car",
+    "cat",
+    "cell phone",
+    "chair",
+    "dog",
+    "laptop",
+    "person",
+    "sports ball"
+  ]
+}
