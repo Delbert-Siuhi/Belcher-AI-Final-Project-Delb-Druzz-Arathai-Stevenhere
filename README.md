@@ -356,3 +356,9 @@ How the group solved it: The project includes two paths. Demo mode runs anywhere
 
 What I learned: I learned how edge AI projects need more than a model. They need setup checks, fallbacks, logging, hardware assumptions, and simple controls so the system can survive a live demo.
 
+rpicam-hello -t 10000 \
+--post-process-file /usr/share/rpi-camera-assets/hailo_yolov8_inference.json \
+--framerate 15 \
+-v 2 \
+-n 2>&1 | tee hailo_raw.txt
+
