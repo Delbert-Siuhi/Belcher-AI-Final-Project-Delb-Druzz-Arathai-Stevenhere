@@ -350,11 +350,18 @@ ChatGPT helped with coding, debugging, packaging, and documentation.
 
 Approximate total development time: 8 hours.
 
-Biggest challenge encountered: The hardest part was designing a project that runs locally on Raspberry Pi hardware while still being testable without the hardware.
+Biggest challenge encountered: I think that the hardest part was designing a project that runs locally on the Pi but we had to test it without it, which was hard.
+How the group solved it: We had two ways, where the first way was a demo way, and that runs with anything, and the other way has a camera way, that used a camera.
+What I learned: I learned how powerful AI is as a tool for vibe-coding, but also, we had to be more and more specific with prompts. It was also really cool to expirement
+with my first Raspberry PI.
 
-How the group solved it: The project includes two paths. Demo mode runs anywhere and proves the event logic works. Camera mode uses Raspberry Pi's Hailo YOLO pipeline on the actual Pi.
+## Arath Reflection
+Approximate total development time: 8 hours.
 
-What I learned: I learned how edge AI projects need more than a model. They need setup checks, fallbacks, logging, hardware assumptions, and simple controls so the system can survive a live demo.
+Biggest Challenge: I think that the biggest challenge we had was resolving package and library issues and making sure the rasberry pi was able to use the camera.
+How the group solved it: We used several Linux tools to check if the hardware was installed and debugged my isolating the issues to make sure we had the correct packages. 
+What I learned: I learned that AI can be powerful, but only if you know what you are doing and are able to figure out what AI is saying. It was also cool to learn how to use a 
+raspberry pi as I have never used one before.
 
 rpicam-hello -t 10000 \
 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov8_inference.json \
