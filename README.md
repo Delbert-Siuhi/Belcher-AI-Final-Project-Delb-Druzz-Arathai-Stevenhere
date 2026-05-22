@@ -363,9 +363,17 @@ How the group solved it: We used several Linux tools to check if the hardware wa
 What I learned: I learned that AI can be powerful, but only if you know what you are doing and are able to figure out what AI is saying. It was also cool to learn how to use a 
 raspberry pi as I have never used one before.
 
+## Delbert Reflection
+Approxiamte total development time: 8 hours.
+
+Biggest Challenge: In my opinion the biggest challenge for me was trying to setup the camera and making the code for it too start recognizing objects.
+How we solved it: We used AI as a tool to generate code and give us ideas on how to setup and improve the camera. 
+What I learned: I learned that AI is pretty capable at coding as long as you give it the right prompts and are able to debug problems. Lots of times the AI would give us code with certain problems that we had to find and then try to prompt in a specific way to try and fix. I learned that AI is a useful tool to generate code, but you have to use it smartly or it will cause more problems than solutions. 
+
 rpicam-hello -t 10000 \
 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov8_inference.json \
 --framerate 15 \
 -v 2 \
--n 2>&1 | tee hailo_raw.txt
+-n 2>&1 | tee hailo_raw.txt 
+*use only up to frame rate if you want camera output displayed*
 
